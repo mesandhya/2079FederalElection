@@ -26,7 +26,7 @@ var Filters = {
         municipality: mayor_name
     },
     mayor_party: {
-        municipality: generalMunicipality
+        municipality: mayor_party2
     },
     mayor_age: {
         municipality: mayor_age
@@ -94,8 +94,8 @@ var Filters = {
 function generalProvince(feature) {
     return {
         weight: 1,
-        opacity: 0.8,
-        color: "#333",
+        opacity: 1,
+        color: "#aaa",
         dashArray: "1",
         fillOpacity: 1,
         fillColor: getProvinceColor(feature.properties.Province)
@@ -115,10 +115,10 @@ function nullProvince(feature) {
 
 function generalDistrict(feature) {
     return {
-        weight: 1,
+        weight: 3,
         opacity: 0.8,
         color: "#333",
-        dashArray: "1",
+        // dashArray: "1",
         fillOpacity: 1,
         fillColor: "#00000000"
     };
@@ -142,24 +142,59 @@ function generalMunicipality(feature) {
     //     color = checkNationalPark(feature.properties.OBJECTID_1);
     // }
     if (Data.fidCodeMap[feature.properties.OBJECTID_1] == 0) {
-        return {
-            weight: 0.5,
-            opacity: 1,
-            color: "#333",
-            // dashArray: "1",
-            fillOpacity: 1,
-            fillColor: "#e2f7e1"
-        };
+
+        color = "#e2f7e1";
+        opacity = 0.3
     }
-    else
-        return {
-            weight: 0.5,
-            opacity: 1,
-            color: "#333",
-            dashArray: "1",
-            fillOpacity: 1,
-            fillColor: "#c7e0f5"
-        };
+    else {
+
+
+        color = "#c6d9ff"
+        opacity = 0.3
+
+    };
+    if (!regionFilter(feature.properties.OBJECTID_1)) {
+        color = "#ffffff00";
+        opacity = 0.3
+    }
+    return {
+        weight: 0.5,
+        opacity: 0.5,
+        color: "#333",
+        // dashArray: "1",
+        fillOpacity: 0.5,
+        fillColor: color
+    };
+}
+
+function mayor_party2(feature) {
+   
+    if (Data.fidCodeMap[feature.properties.OBJECTID_1] == 0) {
+
+        color = "#e2f7e1";
+        opacity = 0.3
+    }
+    else {
+
+        var constcode = Data.fidCodeMap[feature.properties.OBJECTID_1]
+        var provienceid = constcode.toString().substring(0,1)
+        
+        color = GeneralProvienceColor[provienceid]
+        opacity = 1
+
+    };
+    if (!regionFilter(feature.properties.OBJECTID_1)) {
+        color = "#ffffff00";
+        opacity = 0.3
+    }
+    return {
+        weight: 3,
+        opacity: 0.3,
+        color: "#333",
+        // dashArray: "1",
+        fillOpacity: 0.5,
+        fillColor: color
+    };
 }
 
 function getProvinceColor(Province) {

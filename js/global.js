@@ -101,8 +101,8 @@ function sortByNepaliNumeric(obj){
 
 MapOptions= {
     center: [28.3, 84.4],
-    zoom: L.Browser.mobile? 6:7,
-    minZoom: L.Browser.mobile? 6:7,
+    zoom: L.Browser.mobile? 6:7.4,
+    minZoom: L.Browser.mobile? 6:7.4,
     maxZoom:10,
     snapZoom:0.25,
     doubleClickZoom : false,

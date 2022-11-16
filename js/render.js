@@ -9,7 +9,8 @@ function renderMap(){
     renderLayer();
     fitBounds();
     highlightSelect();
-    renderConstituencyNames();
+    // renderConstituencyNames();
+    renderDistrictNames();
 
 }
 
@@ -59,7 +60,7 @@ function removeAllLayer()
         },
         {
             geoJson: Global.districtGeoJson,
-            style: null,
+            style: Filters.generalDistrict,
             id:"district"
         },
         {
@@ -103,16 +104,51 @@ function renderSummary(){
 
 }
 
-function renderConstituencyNames(){
+// function renderConstituencyNames(){
 
-    GeoJsons.municipality.features.forEach(function(d){
-        var constCode = Data.fidCodeMap[d.properties.OBJECTID_1]
-        var constuency = Data.ConstituencyNames[constCode]
+//     GeoJsons.municipality.features.forEach(function(d){
+//         var constCode = Data.fidCodeMap[d.properties.OBJECTID_1]
+//         console.log(d.properties.OBJECTID_1)
+//         var constuency = Data.ConstituencyNames[constCode]
+//         var default_center = [  81.46982838917172, 29.271845521328405]
+//         if(constuency){
+//             centroid = getCenterPoint(d.geometry.coordinates[0])
+//             console.log(d, centroid)
+//             baseFont = 8;
+//             if(Global.boundLevel == "Province")
+//                 baseFont = 14;
+//             else if(Global.boundLevel == "District")
+//                 baseFont = 18;
+//             if(isNaN(centroid[1]) || isNaN(centroid[0]) )
+//             {
+//                 centroid = default_center
+//             }
+//             L.marker([centroid[1]+constuency.Y , centroid[0]+constuency.X], {
+//                 icon: L.divIcon({
+//                     html: '<span style="font-size:'+(baseFont+parseInt(constuency.Font_size) )+'px;">'+constuency.Constituency+'</span>'
+//                 }),
+//                 opacity: 1,
+//                 zIndexOffset: 10000     // Make appear above other map features
+//             }).addTo(Global.map);
+//         }
+       
+//     })
+    
+// }
+
+
+function renderDistrictNames(){
+
+    GeoJsons.district.features.forEach(function(d){
+        var Lcode = Data.fidCodeDistrict[d.properties.fid]
+        var districtname = Data.DistrictNames[Lcode]
+        console.log(districtname)
+
         var default_center = [  81.46982838917172, 29.271845521328405]
-        if(constuency){
+        if(districtname){
             centroid = getCenterPoint(d.geometry.coordinates[0])
             console.log(d, centroid)
-            baseFont = 8;
+            baseFont = 10;
             if(Global.boundLevel == "Province")
                 baseFont = 14;
             else if(Global.boundLevel == "District")
@@ -121,9 +157,9 @@ function renderConstituencyNames(){
             {
                 centroid = default_center
             }
-            L.marker([centroid[1]+constuency.Y , centroid[0]+constuency.X], {
+            L.marker([centroid[1]+parseFloat(districtname.Y) , centroid[0]+parseFloat(districtname.X)], {
                 icon: L.divIcon({
-                    html: '<span style="font-size:'+(baseFont+parseInt(constuency.Font_size) )+'px;">'+constuency.Constituency+'</span>'
+                    html: '<span style="font-weight:500; font-size:'+(baseFont+parseInt(districtname.Font_size) )+'px;">'+districtname.District+'</span>'
                 }),
                 opacity: 1,
                 zIndexOffset: 10000     // Make appear above other map features

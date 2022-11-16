@@ -98,6 +98,12 @@ async function initData(){
         });
     });
 
+    await $.getJSON("json/constituency_page_link.json",function(data){
+        data.forEach(function(d){
+            Data.PhotoLinkPage[d.ConstCode] = d;
+        });
+    });
+
     await $.ajax("csv/federal_candidate.csv", {
         success: function(data) {
             data = $.csv.toObjects(data);
@@ -115,6 +121,18 @@ async function initData(){
             data = $.csv.toObjects(data);
            data.forEach(function(d){
                 Data.ConstituencyNames[d.ConstCode] = d;
+            });
+        },
+        error: function() {
+            alert("error")
+        }
+    });
+
+    await $.ajax("csv/lcodedistrictmap1.csv", {
+        success: function(data) {
+            data = $.csv.toObjects(data);
+           data.forEach(function(d){
+                Data.DistrictNames[d.Lcode] = d;
             });
         },
         error: function() {

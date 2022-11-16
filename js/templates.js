@@ -42,14 +42,13 @@ class TemplateClass {
 
   mayor_party(info) {
     return `<h2>` + info["body"]["Constituency"] + `</h2>
-        
+
         <div class="row-wrap">
-          <div style="flex:3">
+        <div style="flex:3">
             <div class="row">
               <div class="col-md-3">
                 <img class="candidate_img" src="`
-                +(info["body"].Photo_link ? info["body"].Photo_link : 'https://election.onlinekhabar.com/wp-content/themes/ok-election-2022/assets/images/avatar.jpg')
-                +`" />
+                + info["body"]["1stPhoto"] +`" />
               </div>
               <div class="col-md-9 candidate_info">
                 <p class="candidate_name">`+ info["body"]["1stCandidate"]+ `</p>
@@ -58,7 +57,7 @@ class TemplateClass {
             </div>
           </div>
           <div>
-          <div class="candidate_vote_count">Vote Count
+          <div class="candidate_vote_count">
           ` +
           ( Data.PartiesById[info["body"]["1stPartyID"]].party_symbol ?
            `<img class="party_image" src="`+ Data.PartiesById[info["body"]["1stPartyID"]].party_symbol +`">` : "")
@@ -66,14 +65,13 @@ class TemplateClass {
           </div>
         </div>
         </div>
-
+        
         <div class="row-wrap">
           <div style="flex:3">
             <div class="row">
               <div class="col-md-3">
                 <img class="candidate_img" src="`
-                +(info["body"].Photo_link ? info["body"].Photo_link : 'https://election.onlinekhabar.com/wp-content/themes/ok-election-2022/assets/images/avatar.jpg')
-                +`" />
+                +info["body"]["2ndPhoto"]+`" />
               </div>
               <div class="col-md-9 candidate_info">
                 <p class="candidate_name">`+ info["body"]["2ndCandidate"]+ `</p>
@@ -82,14 +80,28 @@ class TemplateClass {
             </div>
           </div>
           <div>
-          <div class="candidate_vote_count">Vote Count
+          <div class="candidate_vote_count">
           ` +
           ( Data.PartiesById[info["body"]["2ndPartyID"]].party_symbol ?
            `<img class="party_image" src="`+ Data.PartiesById[info["body"]["2ndPartyID"]].party_symbol +`">` : "")
            +`
           </div>
-          </div>
+          
+        </div>
+        </div>
+
+        <div class="row-wrap">
+         
+              <div class="col-md-6">
+                <button class="button" onclick="window.location.href='`+ Data.PhotoLinkPage[info["body"]["ConstCode"]].PageLink +`';">FULL DETAILS
+                </button>
+              </div>
+              
+           
         </div>` 
+
+        
+        
 
 
         // <div>

@@ -1,4 +1,5 @@
 var Data = {
+    PhotoLinkPage: [],
     Parties: [],
     PartiesById: [],
     Mayors: [],
@@ -11,7 +12,17 @@ var Data = {
     Districts: [],
     Municipalities: [],
     ConstituencyNames : [],
-    
+    DistrictNames: [],
+}
+
+var GeneralProvienceColor = {
+    "1": "#88b7ff",
+    "2": "#ccd7d9",
+    "3": "#c7dbff",
+    "4": "#75b6ef",
+    "5": "#b0e0e9",
+    "6": "#c6d9ff",
+    "7": "#97c5e7"
 }
 
 var ProvinceNepaliName = {
@@ -35,9 +46,9 @@ var AgeBracketColor = {
     "60+" :  "#2c7fb8"
 }
 var NationalParks = {
-    '72'	:	'कोशी टप्पु वन्यजन्तु आरक्ष',
-    '139'	:	'कोशी टप्पु वन्यजन्तु आरक्ष',
-    '158'	:	'कोशी टप्पु वन्यजन्तु आरक्ष',
+    // '72'	:	'कोशी टप्पु वन्यजन्तु आरक्ष',
+    // '139'	:	'कोशी टप्पु वन्यजन्तु आरक्ष',
+    // '158'	:	'कोशी टप्पु वन्यजन्तु आरक्ष',
     '313'	:	'शिवपुरी जलाधार र वन्यजन्तु आरक्ष',
     '314'	:	'लाङटाङ राष्ट्रिय निकुञ्ज',
     '343'	:	'पर्सा वन्यजन्तु आरक्ष',

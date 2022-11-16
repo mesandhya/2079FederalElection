@@ -148,12 +148,12 @@ async function resetMap(evt) {
     Global.currentLayers = [
         {
             geoJson: Global.provinceGeoJson,
-            style: null,
+            style: Filters.generalProvince,
             id:"province"
         },
         {
             geoJson: Global.districtGeoJson,
-            style: null,
+            style: Filters.generalDistrict,
             id:"district"
         },
         // {
